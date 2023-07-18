@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+  db:
+    container_name: mongoDB
+    image: mongo:latest
+    restart: always
+    volumes:
+      - ./foodData:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE= Food
+    ports:
+      - 27017:27017
+  node-app:
+    container_name: nodeApp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./app:/app
+    ports:
+      - 9001:9001
+    depends_on:
+      - db
