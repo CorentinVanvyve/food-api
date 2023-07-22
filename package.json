@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
+    "seed": "npx ts-node src/seeds/user.seed.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -13,12 +14,14 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mongoose": "^7.3.4"
+    "faker": "^5.5.3",
+    "mongoose": "^7.4.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/faker": "^6.6.9",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^20.4.2",
     "nodemon": "^3.0.1",

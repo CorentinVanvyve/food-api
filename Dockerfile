@@ -4,7 +4,7 @@ FROM node:16-alpine
 RUN apk add --no-cache --update curl
 
 # Create app directory in Docker
-WORKDIR /usr/src/app
+WORKDIR ./src
 
 # Install app dependencies by copying
 # package.json and package-lock.json

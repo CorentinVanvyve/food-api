@@ -6,6 +6,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import mongoose, { ConnectOptions } from "mongoose";
+import { MetricController } from "./controllers/metric.controller";
+import { MetricService } from "./services/metric.service";
 
 class App {
   public app: Application;
@@ -45,9 +47,11 @@ class App {
   private setControllers() {
     // Creating a new instance of our User Controller
     const userController = new UserController(new UserService());
+    const metricController = new MetricController(new MetricService());
 
     // Telling express to use our Controller's routes
     this.app.use("/user", userController.router);
+    this.app.use("/metric", metricController.router);
   }
 }
 

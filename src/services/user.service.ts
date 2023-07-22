@@ -1,29 +1,25 @@
 import { User } from "../models/user.model";
-import { WELCOME_MESSAGE } from "../constants/food-api.constants";
 import { IUser } from "../interfaces/user.interface";
 
 export class UserService {
-    public getWelcomeMessage() {
-      return WELCOME_MESSAGE;
-    }
 
     public findAll(): Promise<IUser[]> {
       return User.find({}).exec();
     }
 
-    public add(user: IUser): Promise<IUser> {
-      const newUser = new User(user);
-      return newUser.save();
-    }
+    public async findOne(id: string): Promise<IUser> {
+      const userFound = await User.findById(id).exec();
 
-    public async delete(id: string) {
-      const deletedUser = await User.findByIdAndDelete(id).exec();
-
-      if (!deletedUser) {
+      if (!userFound) {
         throw new Error(`User with id '${id}' not found`);
       }
 
-      return deletedUser;
+      return userFound;
+    }
+
+    public add(user: IUser): Promise<IUser> {
+      const newUser = new User(user);
+      return newUser.save();
     }
 
     public async update(id: string, user: IUser) {
