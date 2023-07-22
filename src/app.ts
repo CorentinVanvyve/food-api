@@ -1,11 +1,13 @@
-import { MONGO_URL } from "./constants/food-api.constants";
+import { MONGO_URL } from "./constants/foodApiConstants";
 import { Application } from "express";
-import { UserController } from "./controllers/user.controller";
-import { UserService } from "./services/user.service";
-import { MetricController } from "./controllers/metric.controller";
-import { MetricService } from "./services/metric.service";
-import { ProfileController } from "./controllers/profile.controller";
-import { ProfileService } from "./services/profile.service";
+import { UserController } from "./controllers/userController";
+import { UserService } from "./services/userService";
+import { MetricController } from "./controllers/metricController";
+import { MetricService } from "./services/metricService";
+import { ProfileController } from "./controllers/profileController";
+import { ProfileService } from "./services/profileService";
+import { UserAlimentController } from "./controllers/userAliment.controller";
+import { UserAlimentService } from "./services/userAlimentService";
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
@@ -47,15 +49,17 @@ class App {
 
 
   private setControllers() {
-    // Creating a new instance of our User Controller
+    // Creating a new instance of our Controllers
     const userController = new UserController(new UserService());
     const metricController = new MetricController(new MetricService());
     const profileController = new ProfileController(new ProfileService());
+    const userAlimentController = new UserAlimentController(new UserAlimentService());
 
     // Telling express to use our Controller's routes
     this.app.use("/user", userController.router);
     this.app.use("/metric", metricController.router);
     this.app.use("/profile", profileController.router);
+    this.app.use("/useraliment", userAlimentController.router);
   }
 }
 
