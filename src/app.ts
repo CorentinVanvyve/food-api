@@ -2,12 +2,14 @@ import { MONGO_URL } from "./constants/food-api.constants";
 import { Application } from "express";
 import { UserController } from "./controllers/user.controller";
 import { UserService } from "./services/user.service";
+import { MetricController } from "./controllers/metric.controller";
+import { MetricService } from "./services/metric.service";
+import { ProfileController } from "./controllers/profile.controller";
+import { ProfileService } from "./services/profile.service";
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import mongoose, { ConnectOptions } from "mongoose";
-import { MetricController } from "./controllers/metric.controller";
-import { MetricService } from "./services/metric.service";
 
 class App {
   public app: Application;
@@ -48,10 +50,12 @@ class App {
     // Creating a new instance of our User Controller
     const userController = new UserController(new UserService());
     const metricController = new MetricController(new MetricService());
+    const profileController = new ProfileController(new ProfileService());
 
     // Telling express to use our Controller's routes
     this.app.use("/user", userController.router);
     this.app.use("/metric", metricController.router);
+    this.app.use("/profile", profileController.router);
   }
 }
 

@@ -20,11 +20,9 @@ async function seedDatabase() {
     const userCount = 10; // Nombre d'utilisateurs à créer
 
     for (let i = 0; i < userCount; i++) {
-      const name = faker.name.firstName();
       const phone = faker.phone.phoneNumberFormat();
 
       const newUser = new User({
-        name,
         phone,
       });
 
